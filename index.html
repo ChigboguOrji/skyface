@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <title>SKYFACE || Meteorological app</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./styles/style.css">
+
+  <body>
+    <div id="wrapper">
+      <header role="banner">
+        <div class="header-inner">
+          <div id="appName">
+            <h1>
+              <a href="/index.html">SKYFACE</a>
+            </h1>
+          </div>
+          <div id="siteLinks">
+            <ul>
+              <li>
+                <a href="/index.html" class="active">Home</a>
+              </li>
+              <li>
+                <a href="#">Documentation</a>
+              </li>
+              <li>
+                <a href="#">Sign up</a>
+              </li>
+              <li>
+                <a href="#" id="visitor"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <div class="main-content">
+          <div id="welcome">
+            <h1>SKYFACE</h1>
+            <h4>Stay in touch with weather condition in your locale and beyond</h4>
+            <small>type in the zipcode of the needed area below to continue</small><br />
+            <strong>Defaults: <em>zipcode&RightArrow; 12345, country code&RightArrow; us</em></strong>
+          </div>
+          <div class="visitor-login-pane" id="visitor-login-pane">
+            <form action="javascript:void(0)" id="visitorForm" name="visitorForm" method="POST">
+              <label for="visitorName">Get the current weather condition of your locale, but before you start - please let&#39;s know who you are ?</label>
+              <input type="text" name="visitorName" id="visitorName" placeholder="Display Name">
+              <input type="submit" value="Login">
+            </form>
+          </div>
+
+          <div id="weather-info">
+            <div id="weather-info-inner">
+
+              <div class="view-pane">
+                <h3>Weather</h3>
+                <strong data-weather="cloud"></strong>
+              </div>
+
+              <div class="view-pane">
+                <h3>Cloud description</h3>
+                <strong data-weather="cloud_description"></strong>
+              </div>
+
+              <div class="view-pane">
+                <h3>Temperature</h3>
+                <strong data-weather="temperature"></strong>
+              </div>
+
+              <div class="view-pane">
+                <h3>Humidity</h3>
+                <strong data-weather="humidity">30% humid</strong>
+              </div>
+
+            </div>
+            <div id="code">
+              zipcode :
+              <strong data-weather="zipcode"></strong>&nbsp;&nbsp;&nbsp;
+              country :
+              <strong data-weather="country"></strong>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div class="zipcode-form-pane">
+            <div class="error-pane"></div>
+            <form action="javascript:void(0)" id="zipcodeForm" name="zipcodeForm" method="POST">
+              <div class="form-inner">
+                <div class="form-field">
+                  <label>
+                    <input type="text" name="zipcode" id="zipcode" placeholder="zipcode (eg. 420001)">
+                  </label>
+                </div>
+
+                <div class="form-field">
+                  <label>
+                    <input type="text" name="country_code" id="country_code" placeholder="country code (eg. ng)">
+                  </label>
+                </div>
+              </div>
+              <input type="submit" value="Get weather info">
+            </form>
+          </div>
+        </footer>
+      </main>
+    </div>
+    <script src="./scripts/main.js"></script>
+  </body>
+
+</html>

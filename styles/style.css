@@ -1,0 +1,243 @@
+@charset "utf-8";
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  box-sizing: border-box;
+  transition: all, .6s linear;
+  font-weight: normal;
+}
+
+strong {
+  font-weight: 700;
+}
+
+body {
+  background-color: rgb(236, 240, 241);
+  color: rgb(53, 52, 50);
+  font-size: 14px;
+  min-height: 100vh;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: rgb(78, 77, 74);
+  border-bottom: 5px solid rgb(53, 52, 50);
+}
+
+.header-inner {
+  width: 90%;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header-inner #siteLinks ul li {
+  display: inline-block;
+}
+
+.header-inner #siteLinks ul li:not(:last-of-type) {
+  margin-right: 10px;
+}
+
+.header-inner a {
+  float: left;
+  color: rgb(236, 240, 241);
+  text-decoration: none;
+  padding: 15px;
+}
+
+.header-inner #siteLinks ul li a:not(#visitor):hover,
+.header-inner #siteLinks ul li a.active {
+  background-color: rgb(53, 52, 50);
+  color: rgb(236, 240, 241);
+  transform: translateY(4px);
+}
+
+#visitor {
+  font-style: oblique;
+  font-weight: 800;
+  cursor: text;
+  background-color: rgb(53, 52, 50);
+  border: 1px solid orangered;
+  border-radius: 3px;
+  display: none;
+}
+
+.main-content {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#welcome {
+  font-size: 150%;
+  text-align: center;
+  margin: 15% auto 0;
+}
+
+#welcome h1 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bolder;
+  color: orangered;
+  margin-bottom: 2.5%;
+}
+
+.visitor-login-pane {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(53, 52, 50, .84);
+  display: none;
+  z-index: 999;
+}
+
+.visitor-login-pane form {
+  width: 30%;
+  margin: 100px auto;
+  background-color: rgb(236, 240, 241);
+  color: rgb(53, 52, 50);
+  padding: 100px 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 2px rgb(53, 52, 50);
+  text-align: center;
+}
+
+label,
+input {
+  display: block;
+  width: 100%;
+}
+
+input {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid rgb(126, 120, 120);
+  border-radius: 3px;
+}
+
+input[type="submit"] {
+  background-color: orangered;
+  color: rgb(236, 240, 241);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.zipcode-form-pane {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 0 0 10px;
+  display: none;
+  text-align: center;
+  z-index: 99;
+  background-color: rgba(53, 52, 50, .30);
+}
+
+
+#weather-info {
+  width: 90%;
+  margin: 100px auto 0;
+  position: relative;
+  min-height: 300px;
+  padding: 2%;
+  display: none;
+}
+
+#weather-info-inner,
+.zipcode-form-pane form .form-inner {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
+
+.zipcode-form-pane form {
+  width: 25%;
+  margin: 0 auto;
+}
+
+.view-pane {
+  min-height: 100px;
+  width: 24%;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.view-pane h3 {
+  margin-bottom: 2%;
+}
+
+.zipcode-form-pane form input {
+  padding: 5px;
+  width: 98%;
+}
+
+.error-pane p {
+  padding: 0.5%;
+  background: orangered;
+  text-align: center;
+  color: rgb(236, 240, 241);
+}
+
+#code {
+  font-weight: 800;
+  background-color: rgb(53, 52, 50);
+  color: rgb(236, 240, 241);
+  height: auto;
+  width: 30%;
+  margin: 0 auto;
+  padding: 1%;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 35%;
+  border-radius: 5px;
+}
+
+@media screen and (min-width:320px) and (max-width:480px) {
+  header {
+    position: static;
+  }
+
+  .header-inner {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .header-inner a,
+  input {
+    padding: 5px;
+  }
+
+  #weather-info {
+    margin-top: 0;
+  }
+
+  #weather-info-inner {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .view-pane,
+  .zipcode-form-pane form,
+  [data-weather="zipcode"],
+  .visitor-login-pane form,
+  input {
+    width: 90%;
+  }
+
+  .zipcode-form-pane {
+    position: static;
+  }
+}
