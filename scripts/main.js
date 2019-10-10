@@ -1,14 +1,14 @@
   const SKYFACE = {
     elem: {
-      visitorFormPane: document.querySelector('#visitor-login-pane'),
-      visitorForm: document.querySelector('#visitorForm'),
+      visitorLoginModalFormPane: document.querySelector('#visitor-login-modal'),
+      visitorLoginModalForm: document.querySelector('#visitor-login-modal-form'),
       visitorName: document.querySelector('#visitorName'),
       visitor: document.querySelector('#visitor'),
-      welcome: document.querySelector('#welcome'),
+      welcomeNote: document.querySelector('#welcome-note'),
 
       errorPane: document.querySelector('.error-pane'),
-      zipcodeFormPane: document.querySelector('.zipcode-form-pane'),
-      zipcodeForm: document.querySelector('#zipcodeForm'),
+      userInputPane: document.querySelector('.user-input-form-pane'),
+      userInput: document.querySelector('#userInput'),
       weatherDataPane: document.querySelector('#weather-info'),
 
       cloud: document.querySelector('[data-weather="cloud"]'),
@@ -22,8 +22,8 @@
     identifyVisitor() {
       if ('sessionStorage' in window && !sessionStorage.getItem('visitorIdentified')) {
         console.log('New visitor');
-        this.elem.visitorFormPane.style.display = 'block'
-        this.elem.visitorForm.addEventListener('submit', this.loginVisitor, false)
+        this.elem.visitorLoginModalFormPane.style.display = 'block'
+        this.elem.visitorLoginModalForm.addEventListener('submit', this.loginVisitor, false)
       }
     },
 
@@ -32,9 +32,9 @@
         const name = sessionStorage.getItem('visitor')
         if (name) {
           this.elem.visitor.style.display = 'block'
-          this.elem.visitor.textContent = name
-          this.elem.visitorFormPane.style.display = 'none'
-          this.elem.zipcodeFormPane.style.display = 'block'
+          this.elem.visitor.innerHTML += name
+          this.elem.visitorLoginModalFormPane.style.display = 'none'
+          this.elem.userInputPane.style.display = 'block'
         }
       } catch (err) {}
     },
@@ -43,14 +43,14 @@
       const visitor = SKYFACE.elem.visitorName.value.trim()
       if (visitor !== '' || undefined) {
         sessionStorage.setItem('visitorIdentified', true)
-        sessionStorage.setItem('visitor', 'Welcome ' + visitor)
+        sessionStorage.setItem('visitor', visitor)
         SKYFACE.setVisitorName()
         console.log('Visitor identified as %s', visitor)
       }
     },
 
     init() {
-      this.elem.zipcodeForm.addEventListener('submit', this.getWeatherData, false)
+      this.elem.userInput.addEventListener('submit', this.getWeatherData, false)
     },
 
     getWeatherData() {
@@ -78,7 +78,7 @@
           if (SKYFACE.elem.errorPane.innerHTML) {
             SKYFACE.elem.errorPane.innerHTML = ''
           }
-          SKYFACE.elem.welcome.style.display = 'none'
+          SKYFACE.elem.welcomeNote.style.display = 'none'
           SKYFACE.elem.weatherDataPane.style.display = 'block'
 
           SKYFACE.elem.zip.innerHTML = SKYFACE.zipcode
@@ -93,7 +93,7 @@
           console.log(err)
           if (err.status == 404) {
             SKYFACE.elem.errorPane.innerHTML = `<p>${err.status} ${err.statusText}</p>`
-          } else SKYFACE.elem.errorPane.innerHTML = `<p>Sorry, something went wrong, please check your internet connection and try again</p>`
+          } else SKYFACE.elem.errorPane.innerHTML = `<p><i class="fas fa-info-circle"></i> Sorry, something went wrong, please check your internet connection and try again</p>`
         })
     }
   }
